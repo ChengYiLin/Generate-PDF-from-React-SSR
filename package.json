@@ -1,0 +1,27 @@
+{
+  "name": "server_side_render_with_react_and_express",
+  "version": "1.0.0",
+  "description": "Server Side Rendering with React and Express",
+  "main": "app.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/app.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\""
+  },
+  "author": "Cheng Yi Lin",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.32",
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.6.3"
+  },
+  "engines": {
+    "node": ">=16.15.0"
+  }
+}
