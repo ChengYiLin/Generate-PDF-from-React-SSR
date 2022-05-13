@@ -1,2 +1,1 @@
-# Implement React Server Side Render with NodeJS Express
-
+# Node.JS Express with TypeScript Template
