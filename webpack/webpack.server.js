@@ -9,11 +9,11 @@ module.exports = {
         extensions: [".tsx", ".ts"],
     },
     entry: {
-        server: "./server/index.ts",
+        server: path.resolve(__dirname, "../server/index.ts"),
     },
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "..", "dist"),
+        path: path.resolve(__dirname, "../dist"),
+        filename: "[name].bundle.js",
     },
     module: {
         rules: [
