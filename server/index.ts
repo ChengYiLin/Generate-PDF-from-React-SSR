@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import HomePage from "../client/components/HomePage";
+import { generatePDF } from "./lib/generatePDF";
 
 dotenv.config();
 
@@ -21,11 +22,23 @@ const manifest = JSON.parse(
 );
 const clientBundleJS: string = manifest["client.js"];
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", async (req: Request, res: Response) => {
     const component = ReactDOMServer.renderToString(
         React.createElement(HomePage)
     );
-    res.render("index", { clientBundleJS, component });
+
+    res.render("index", { component, clientBundleJS });
+});
+
+app.get("/pdf", async (req: Request, res: Response) => {
+    const component = ReactDOMServer.renderToString(
+        React.createElement(HomePage)
+    );
+
+    const pdf = await generatePDF(component);
+
+    res.set("Content-Type", "application/pdf");
+    res.send(pdf);
 });
 
 app.listen(port, () => {
