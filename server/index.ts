@@ -1,13 +1,30 @@
 import express, { Express, Request, Response } from "express";
+import fs from "fs";
+import path from "path";
 import dotenv from "dotenv";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+import HomePage from "../client/components/HomePage";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use("/", express.static(path.join(__dirname, "static")));
+
+const manifest = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "static/manifest.json"), "utf-8")
+);
+const clientBundleJS: string = manifest["client.js"];
+
 app.get("/", (req: Request, res: Response) => {
-    res.send("Hello Express");
+    const component = ReactDOMServer.renderToString(
+        React.createElement(HomePage)
+    );
+    res.render("index", { clientBundleJS, component });
 });
 
 app.listen(port, () => {

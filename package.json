@@ -5,14 +5,17 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\"",
-    "build:server": "webpack --config ./webpack/webpack.server.js",
+    "build": "yarn build:client && yarn build:server",
     "build:client": "webpack --config ./webpack/webpack.client.js",
-    "start": "node dist/bundle.js"
+    "build:server": "webpack --config ./webpack/webpack.server.js",
+    "clean:restart": "rm -rf dist && rm -rf node_modules && yarn install",
+    "start": "yarn build && node dist/server.bundle.js"
   },
   "author": "Cheng Yi Lin",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.0.0",
+    "ejs": "^3.1.8",
     "express": "^4.17.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
@@ -26,6 +29,7 @@
     "@typescript-eslint/parser": "^5.23.0",
     "clean-webpack-plugin": "^4.0.0",
     "concurrently": "^7.1.0",
+    "copy-webpack-plugin": "^10.2.4",
     "eslint": ">=5.16.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
