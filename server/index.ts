@@ -15,6 +15,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use("/", express.static(path.join(__dirname, "static")));
 
+// Get client Site Bundle JS
 const manifest = JSON.parse(
     fs.readFileSync(path.join(__dirname, "static/manifest.json"), "utf-8")
 );
