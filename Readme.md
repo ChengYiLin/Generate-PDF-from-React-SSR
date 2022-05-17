@@ -1,4 +1,4 @@
-# React SSR Implement with Node.JS Express
+# React SSR Implemented with Node.JS Express
 
 ## Reference
 
@@ -11,3 +11,7 @@
 
 -   [How to Generate a PDF in Node.js with Puppeteer and JavaScript](https://cheatcode.co/tutorials/how-to-generate-a-pdf-in-node-js-with-puppeteer-and-javascript#creating-a-pdf-generator-function)
 -   [Puppeteer HTML to PDF Generation with Node.js](https://blog.risingstack.com/pdf-from-html-node-js-puppeteer/)
+
+**Styling**
+
+-   [Style Component - Server Side Rendering](https://styled-components.com/docs/advanced#server-side-rendering)
