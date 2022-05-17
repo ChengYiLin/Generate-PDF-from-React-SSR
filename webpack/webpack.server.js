@@ -1,6 +1,8 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const CopyPlugin = require("copy-webpack-plugin");
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
+const { ProvidePlugin } = require("webpack");
 
 module.exports = {
     name: "server",
@@ -8,6 +10,14 @@ module.exports = {
     target: "node",
     resolve: {
         extensions: [".tsx", ".ts"],
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: path.resolve(
+                    __dirname,
+                    "../tsconfig/tsconfig.server.json"
+                ),
+            }),
+        ],
     },
     entry: {
         server: path.resolve(__dirname, "../server/index.ts"),
@@ -20,9 +30,17 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: "ts-loader",
-                options: {
-                    configFile: "../tsconfig/tsconfig.server.json",
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            "@babel/typescript",
+                            "@babel/preset-react",
+                            "@babel/preset-env",
+                        ],
+                        plugins: ["@babel/transform-runtime"],
+                    },
                 },
             },
         ],
@@ -41,6 +59,9 @@ module.exports = {
                     to: "views",
                 },
             ],
+        }),
+        new ProvidePlugin({
+            React: "react",
         }),
     ],
 };
