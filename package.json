@@ -1,50 +1,61 @@
 {
-  "name": "server_side_render_with_react_and_express",
-  "version": "1.0.0",
-  "description": "Server Side Rendering with React and Express",
-  "private": true,
-  "scripts": {
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\"",
-    "build": "yarn build:client && yarn build:server",
-    "build:client": "webpack --config ./webpack/webpack.client.js",
-    "build:server": "webpack --config ./webpack/webpack.server.js",
-    "clean:restart": "rm -rf dist && rm -rf node_modules && yarn install",
-    "start": "yarn build && node dist/server.bundle.js"
-  },
-  "author": "Cheng Yi Lin",
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "ejs": "^3.1.8",
-    "express": "^4.17.3",
-    "puppeteer": "^14.1.0",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/node": "^17.0.32",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
-    "@typescript-eslint/eslint-plugin": "^5.23.0",
-    "@typescript-eslint/parser": "^5.23.0",
-    "clean-webpack-plugin": "^4.0.0",
-    "concurrently": "^7.1.0",
-    "copy-webpack-plugin": "^10.2.4",
-    "eslint": ">=5.16.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-react": "^7.29.4",
-    "nodemon": "^2.0.15",
-    "prettier": "2.6.2",
-    "ts-loader": "^9.3.0",
-    "typescript": "^4.6.3",
-    "webpack": "^5.72.1",
-    "webpack-cli": "^4.9.2",
-    "webpack-manifest-plugin": "^5.0.0",
-    "webpack-node-externals": "^3.0.0"
-  },
-  "engines": {
-    "node": ">=16.15.0"
-  }
+    "name": "server_side_render_with_react_and_express",
+    "version": "1.0.0",
+    "description": "Server Side Rendering with React and Express",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\"",
+        "build": "yarn build:client && yarn build:server",
+        "build:client": "webpack --config ./webpack/webpack.client.js",
+        "build:server": "webpack --config ./webpack/webpack.server.js",
+        "clean:restart": "rm -rf dist && rm -rf node_modules && yarn install",
+        "start": "yarn build && node dist/server.bundle.js"
+    },
+    "author": "Cheng Yi Lin",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "ejs": "^3.1.8",
+        "express": "^4.17.3",
+        "puppeteer": "^14.1.0",
+        "react": "^18.1.0",
+        "react-dom": "^18.1.0",
+        "styled-components": "^5.3.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.12",
+        "@babel/preset-env": "^7.17.12",
+        "@babel/preset-react": "^7.17.12",
+        "@babel/preset-typescript": "^7.17.12",
+        "@types/express": "^4.17.13",
+        "@types/node": "^17.0.32",
+        "@types/react": "^18.0.9",
+        "@types/react-dom": "^18.0.4",
+        "@types/webpack": "^5.28.0",
+        "@typescript-eslint/eslint-plugin": "^5.23.0",
+        "@typescript-eslint/parser": "^5.23.0",
+        "babel-loader": "^8.2.5",
+        "clean-webpack-plugin": "^4.0.0",
+        "concurrently": "^7.1.0",
+        "copy-webpack-plugin": "^10.2.4",
+        "eslint": ">=5.16.0",
+        "eslint-config-google": "^0.14.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-react": "^7.29.4",
+        "nodemon": "^2.0.15",
+        "prettier": "2.6.2",
+        "ts-loader": "^9.3.0",
+        "tsconfig-paths-webpack-plugin": "^3.5.2",
+        "typescript": "^4.6.3",
+        "webpack": "^5.72.1",
+        "webpack-cli": "^4.9.2",
+        "webpack-manifest-plugin": "^5.0.0",
+        "webpack-node-externals": "^3.0.0"
+    },
+    "engines": {
+        "node": ">=16.15.0"
+    },
+    "resolutions": {
+        "styled-components": "^5"
+    }
 }

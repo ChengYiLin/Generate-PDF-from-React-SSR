@@ -1,6 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
 
 module.exports = {
     name: "client",
@@ -8,6 +9,14 @@ module.exports = {
     target: "web",
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: path.resolve(
+                    __dirname,
+                    "../tsconfig/tsconfig.client.json"
+                ),
+            }),
+        ],
     },
     entry: {
         client: path.resolve(__dirname, "../client/index.tsx"),
@@ -21,9 +30,16 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: "ts-loader",
-                options: {
-                    configFile: "../tsconfig/tsconfig.client.json",
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            "@babel/typescript",
+                            "@babel/preset-react",
+                            "@babel/preset-env",
+                        ],
+                    },
                 },
             },
         ],
