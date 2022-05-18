@@ -2,10 +2,11 @@ const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const { TsconfigPathsPlugin } = require("tsconfig-paths-webpack-plugin");
+const { ProvidePlugin } = require("webpack");
 
 module.exports = {
     name: "client",
-    mode: "production",
+    mode: "development",
     target: "web",
     resolve: {
         extensions: [".ts", ".tsx", ".js"],
@@ -39,11 +40,25 @@ module.exports = {
                             "@babel/preset-react",
                             "@babel/preset-env",
                         ],
-                        plugins: ["@babel/transform-runtime"],
+                        plugins: [
+                            "@babel/transform-runtime",
+                            [
+                                "babel-plugin-styled-components",
+                                {
+                                    ssr: false,
+                                },
+                            ],
+                        ],
                     },
                 },
             },
         ],
     },
-    plugins: [new CleanWebpackPlugin(), new WebpackManifestPlugin()],
+    plugins: [
+        new CleanWebpackPlugin(),
+        new WebpackManifestPlugin(),
+        new ProvidePlugin({
+            React: "react",
+        }),
+    ],
 };

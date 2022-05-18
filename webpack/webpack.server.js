@@ -6,7 +6,7 @@ const { ProvidePlugin } = require("webpack");
 
 module.exports = {
     name: "server",
-    mode: "production",
+    mode: "development",
     target: "node",
     resolve: {
         extensions: [".tsx", ".ts"],
@@ -39,7 +39,15 @@ module.exports = {
                             "@babel/preset-react",
                             "@babel/preset-env",
                         ],
-                        plugins: ["@babel/transform-runtime"],
+                        plugins: [
+                            "@babel/transform-runtime",
+                            [
+                                "babel-plugin-styled-components",
+                                {
+                                    ssr: false,
+                                },
+                            ],
+                        ],
                     },
                 },
             },

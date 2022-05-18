@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import dotenv from "dotenv";
 import React from "react";
+import ejs from "ejs";
 import ReactDOMServer from "react-dom/server";
 import HomePage from "../client/components/HomePage";
 import { generatePDF } from "./lib/generatePDF";
@@ -35,7 +36,17 @@ app.get("/pdf", async (req: Request, res: Response) => {
         React.createElement(HomePage)
     );
 
-    const pdf = await generatePDF(component);
+    const template = fs.readFileSync(
+        path.join(__dirname, "views/index.ejs"),
+        "utf-8"
+    );
+
+    const pdfHtmlString = ejs.render(template, {
+        component,
+        clientBundleJS,
+    });
+
+    const pdf = await generatePDF(pdfHtmlString);
 
     res.set("Content-Type", "application/pdf");
     res.send(pdf);
