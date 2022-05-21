@@ -32,8 +32,15 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.get("/pdf", async (req: Request, res: Response) => {
+    const reqData = {
+        name: "Martin Lin",
+        phone: "0911222333",
+        city: "Taipei",
+        colleagues: ["Bear", "Andy", "FengLin"],
+    };
+
     const component = ReactDOMServer.renderToString(
-        React.createElement(HomePage)
+        React.createElement(HomePage, reqData)
     );
 
     const template = fs.readFileSync(
