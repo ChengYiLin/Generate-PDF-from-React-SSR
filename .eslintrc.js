@@ -1,21 +1,15 @@
 module.exports = {
-    env: {
-        browser: true,
-        es2021: true,
-        node: true,
-    },
-    extends: ["plugin:react/recommended", "google", "prettier"],
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
-        },
-        ecmaVersion: "latest",
-        sourceType: "module",
+        ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+        sourceType: 'module',
     },
-    plugins: ["react", "@typescript-eslint"],
+    extends: [
+        'plugin:@typescript-eslint/recommended', // recommended rules from the @typescript-eslint/eslint-plugin
+        'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    ],
     rules: {
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off",
+        // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+        // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     },
 };
