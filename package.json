@@ -5,9 +5,11 @@
     "private": true,
     "author": "Cheng Yi Lin",
     "license": "MIT",
+    "type": "module",
     "scripts": {
         "dev": "webpack",
-        "start": "node ./dist/bundle.js"
+        "watch": "tsc -p .",
+        "start": "node ./compile/app.js"
     },
     "dependencies": {
         "body-parser": "^1.20.1",

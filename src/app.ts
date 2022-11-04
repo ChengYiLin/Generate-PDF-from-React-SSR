@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
+import getRenderedTemplate from './provider/templateProvider';
+import generatePDF from './provider/pdfProvider';
 
 const app: Express = express();
 
@@ -14,13 +16,26 @@ app.use(express.static('public'));
  */
 
 // For Web (Develop in Local)
-app.get('/page/:pdfTemplate', (req: Request, res: Response) => {
-    res.send('The path parameter is : ' + req.params.pdfTemplate);
+app.get('/page/:pdfTemplate', async (req: Request, res: Response) => {
+    const requestTemplate = req.params.pdfTemplate;
+    const requestBody = req.body;
+
+    const htmlString = await getRenderedTemplate(requestTemplate, requestBody);
+
+    res.set('Content-Type', 'text/html; charset=utf-8');
+    res.send(htmlString);
 });
 
 // For API
-app.post('/api/pdf/:pdfTemplate', (req: Request, res: Response) => {
-    res.send('The path parameter is : ' + req.params.pdfTemplate);
+app.post('/api/pdf/:pdfTemplate', async (req: Request, res: Response) => {
+    const requestTemplate = req.params.pdfTemplate;
+    const requestBody = req.body;
+
+    const htmlString = await getRenderedTemplate(requestTemplate, requestBody);
+    const pdf = await generatePDF(htmlString);
+
+    res.set('Content-Type', 'application/pdf');
+    res.send(pdf);
 });
 
 /**
