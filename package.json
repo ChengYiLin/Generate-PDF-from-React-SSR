@@ -6,9 +6,8 @@
     "author": "Cheng Yi Lin",
     "license": "MIT",
     "scripts": {
-        "dev": "webpack",
-        "watch": "tsc -p .",
-        "start": "node ./compile/app.js"
+        "watch": "concurrently \"tsc -w\" \"nodemon --watch ./dist/app.js\"",
+        "start": "node ./dist/app.js"
     },
     "dependencies": {
         "body-parser": "^1.20.1",
@@ -26,9 +25,11 @@
         "@types/styled-components": "^5.1.26",
         "@typescript-eslint/eslint-plugin": "^5.42.0",
         "@typescript-eslint/parser": "^5.42.0",
+        "concurrently": "^7.5.0",
         "eslint": "^8.26.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.2.1",
+        "nodemon": "^2.0.20",
         "prettier": "^2.7.1",
         "ts-loader": "^9.4.1",
         "typescript": "^4.8.4"
