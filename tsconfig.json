@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "./compile",
+        "outDir": "./dist",
         "jsx": "react-jsx",
         "target": "es2015",
         "strict": true,
         "preserveConstEnums": true,
         "sourceMap": false,
-        "module": "esnext",
+        "module": "CommonJS",
         "moduleResolution": "node",
         "esModuleInterop": true,
         "skipLibCheck": true,

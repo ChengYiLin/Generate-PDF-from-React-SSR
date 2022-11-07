@@ -23,7 +23,7 @@ const Example: FC<IExampleProps> = ({ name }) => {
     return (
         <PDFLayout>
             <Title>這是標題</Title>
-            <SubTitle>我在測試中文可不可以</SubTitle>
+            <SubTitle>我在測試中文可不可以 ???</SubTitle>
             <p>Your name is {name}</p>
         </PDFLayout>
     );
