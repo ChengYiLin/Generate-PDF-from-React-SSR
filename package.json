@@ -10,7 +10,7 @@
         "prepare": "npm run gcp-build",
         "pretest": "npm run gcp-build",
         "start": "node ./dist/app.js",
-        "deploy": "gcloud app deploy",
+        "deploy": "gcloud app deploy --no-cache",
         "dev": "concurrently \"tsc -w\" \"nodemon --watch ./dist/app.js\""
     },
     "dependencies": {

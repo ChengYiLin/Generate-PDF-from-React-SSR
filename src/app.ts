@@ -5,8 +5,7 @@ import generatePDF from './provider/pdfProvider';
 
 const app: Express = express();
 
-process.env['PUPPETEER_CACHE_DIR'] = '$(pwd) npm install puppeteer';
-process.env['PUPPETEER_CACHE_DIR'] = '$(pwd) node ./dist/app.js';
+process.env['PUPPETEER_CACHE_DIR'] = '$(pwd)/.cache/puppeteer';
 
 /**
  * App Configuration
@@ -29,7 +28,7 @@ app.get('/page/:pdfTemplate', async (req: Request, res: Response) => {
     res.send(htmlString);
 });
 
-// For APIz
+// For API
 app.post('/api/pdf/:pdfTemplate', async (req: Request, res: Response) => {
     const requestTemplate = req.params.pdfTemplate;
     const requestBody = req.body;
